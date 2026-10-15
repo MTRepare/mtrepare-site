@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mtrepare-site
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    routes:
+      # Ancienne adresse Webador encore liée depuis Google / anciens posts
+      - type: redirect
+        source: /services/devis
+        destination: /devis
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
