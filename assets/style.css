@@ -500,3 +500,4 @@ section{padding:96px 0}
 .cfg-grid{display:flex;flex-wrap:wrap;justify-content:center}
 .cfg-grid .cfg{flex:0 1 calc((100% - 44px)/3);min-width:280px}
 @media (max-width:640px){.cfg-grid .cfg{flex-basis:100%;min-width:0}}
+.cfg-price .ht{flex-basis:100%;font-size:.78rem;margin-top:-4px}

@@ -313,7 +313,7 @@
   }
   function subject() {
     var bits = ["[MONTAGE PC]"];
-    if (path() === "Expert") bits.push(val("config_type") ? "Config " + val("config_type").split(" (à partir")[0] : "Config client");
+    if (path() === "Expert") bits.push(val("config_type") ? "Config " + val("config_type").split(" (composants")[0] : "Config client");
     else {
       var u = val("usage");
       if (u.indexOf("Jeux") > -1) bits.push("Jeux" + (val("resolution") ? " " + val("resolution").split(" ").pop() : "") + (val("frequence") ? "/" + val("frequence").split(" ")[0] + "Hz" : ""));
@@ -425,7 +425,7 @@
         Array.prototype.forEach.call(sel.options, function (o) { o.disabled = false; if (o.value === want) found = true; });
         sel.value = found ? want : "";
       });
-      form.querySelector('[name="config_type"]').value = c.titre + " — " + c.plateforme + " (à partir de " + euros(c.prix) + ")";
+      form.querySelector('[name="config_type"]').value = c.titre + " — " + c.plateforme + " (composants à partir de " + euros(c.prix) + ")";
       form.querySelector('[name="usage_expert"]').value = c.titre + " : " + c.usage;
       form.querySelector('[name="precisions_expert"]').value = c.extras || "";
       if (+c.prix) { range.value = Math.min(5000, Math.round(+c.prix / 50) * 50); unknown.checked = false; }
@@ -456,7 +456,7 @@
         order.forEach(function (id) {
           var variants = byId[id], cur = variants[0];
           var card = document.createElement("article"); card.className = "cfg";
-          card.innerHTML = '<div class="cfg-top"><span class="e"></span><h3></h3></div><p class="use"></p><div class="plat" role="group" aria-label="Plateforme"></div><ul></ul><p class="extra"></p><div class="cfg-price"><small>À partir de</small><b></b><sup>*</sup></div><button type="button" class="btn btn-accent">Partir de cette config →</button>';
+          card.innerHTML = '<div class="cfg-top"><span class="e"></span><h3></h3></div><p class="use"></p><div class="plat" role="group" aria-label="Plateforme"></div><ul></ul><p class="extra"></p><div class="cfg-price"><small>À partir de</small><b></b><sup>*</sup><small class="ht">composants, hors montage</small></div><button type="button" class="btn btn-accent">Partir de cette config →</button>';
           card.querySelector(".e").textContent = cur.icone || "🖥️";
           card.querySelector("h3").textContent = cur.titre;
           card.querySelector(".use").textContent = cur.usage;
