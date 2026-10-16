@@ -165,7 +165,8 @@ section{padding:96px 0}
 .step p{color:var(--muted);font-size:.93rem}
 
 /* Testimonials */
-.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:900px;margin:0 auto}
+.reviews{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+.reviews .review{flex:0 1 calc((100% - 48px)/3)}
 .review{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative}
 .review .stars{color:#F59E0B;letter-spacing:2px;margin-bottom:12px}
 .review p{color:var(--text);font-style:italic}
@@ -355,3 +356,15 @@ section{padding:96px 0}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* Avis Google */
+.gbadge{display:inline-flex;align-items:center;gap:10px;margin-top:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 20px;box-shadow:var(--shadow);color:var(--text);font-size:.95rem;transition:transform .2s}
+.gbadge:hover{transform:translateY(-2px)}
+.gbadge b{font-family:"Outfit";font-size:1.2rem;color:var(--ink)}
+.gbadge .stars{color:#F59E0B;letter-spacing:1px}
+.review .who>span:last-child{display:grid}
+.review .src{display:flex;align-items:center;gap:6px;font-weight:500;font-size:.8rem;color:var(--muted)}
+.reviews-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:36px}
+
+@media (max-width:900px){.reviews .review{flex-basis:calc((100% - 24px)/2)}}
+@media (max-width:640px){.reviews .review{flex-basis:100%}}
