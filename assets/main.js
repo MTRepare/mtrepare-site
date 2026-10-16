@@ -242,6 +242,7 @@
       var label = btn.innerHTML;
       btn.disabled = true; btn.innerHTML = "Envoi en cours…";
       var data = new FormData(form);
+      if (window.MTR_CONFIG && window.MTR_CONFIG.web3formsKey) data.set("access_key", window.MTR_CONFIG.web3formsKey);
       data.set("subject", "Demande de devis — " + (data.get("appareil") || "") + " — " + (data.get("name") || ""));
       fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
         .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })

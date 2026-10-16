@@ -26,7 +26,7 @@
 <header class="header">
   <div class="container">
     <a class="brand" href="/" aria-label="M.T Répare — accueil"><img src="/img/logo.png" alt="M.T Répare" width="61" height="64" onerror="this.replaceWith(document.createTextNode('M.T Répare'))"></a>
-    <nav class="nav" aria-label="Menu principal"><a href="/" data-path="/">Accueil</a><a href="/services" data-path="/services">Services</a><a href="/tarifs" data-path="/tarifs">Tarifs</a><a href="/a-propos" data-path="/a-propos">À propos</a><a href="/f-a-q" data-path="/f-a-q">F.A.Q</a><a class="btn btn-accent" href="/devis">Devis gratuit</a></nav>
+    <nav class="nav" aria-label="Menu principal"><a href="/" data-path="/">Accueil</a><a href="/services" data-path="/services">Services</a><a href="/montage-pc" data-path="/montage-pc">Montage PC</a><a href="/tarifs" data-path="/tarifs">Tarifs</a><a href="/a-propos" data-path="/a-propos">À propos</a><a href="/f-a-q" data-path="/f-a-q">F.A.Q</a><a class="btn btn-accent" href="/devis">Devis gratuit</a></nav>
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -45,7 +45,7 @@
 <section>
   <div class="container form-wrap">
     <form id="devis-form" class="form-card reveal" action="https://api.web3forms.com/submit" method="POST" novalidate>
-      <input type="hidden" name="access_key" value="20e67df9-5ad3-47de-b70a-cbb5378da9fc">
+      <input type="hidden" name="access_key" value="">
       <input type="hidden" name="from_name" value="Site M.T Répare">
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="progress" aria-hidden="true"><span class="done"></span><span></span><span></span></div>
@@ -76,7 +76,7 @@
           <div class="field"><label for="name">Nom Prénom <span class="req">*</span></label><input id="name" name="name" required autocomplete="name"><span class="err">Champ obligatoire.</span></div>
           <div class="grid2">
             <div class="field"><label for="email">Adresse e-mail <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email"><span class="err">Adresse e-mail invalide.</span></div>
-            <div class="field"><label for="telephone">Téléphone <span class="req">*</span></label><input id="telephone" name="telephone" type="tel" required autocomplete="tel" pattern="[0-9 +.()-]{8,}"><span class="err">Numéro invalide.</span></div>
+            <div class="field"><label for="telephone">Téléphone <span class="req">*</span></label><input id="telephone" name="telephone" type="tel" required autocomplete="tel" pattern="[0-9 +.\(\)\-]{8,}"><span class="err">Numéro invalide.</span></div>
           </div>
           <div class="field"><label for="adresse">Adresse postale <span class="req">*</span></label><input id="adresse" name="adresse" required autocomplete="address-line1" placeholder="N° et nom de rue"><span class="err">Champ obligatoire.</span></div>
           <div class="grid2">
@@ -137,14 +137,14 @@
       </div>
       <div>
         <h4>Navigation</h4>
-        <ul><li><a href="/">Accueil</a></li><li><a href="/services">Services</a></li><li><a href="/tarifs">Tarifs</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/f-a-q">F.A.Q</a></li><li><a href="/devis">Demande de devis</a></li></ul>
+        <ul><li><a href="/">Accueil</a></li><li><a href="/services">Services</a></li><li><a href="/montage-pc">Montage PC</a></li><li><a href="/tarifs">Tarifs</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/f-a-q">F.A.Q</a></li><li><a href="/devis">Demande de devis</a></li></ul>
       </div>
       <div>
         <h4>Services</h4>
         <ul>
           <li><a href="/services#telephone">Smartphones &amp; tablettes</a></li>
           <li><a href="/services#ordinateur">Ordinateurs</a></li>
-          <li><a href="/services#pc-gamer">PC Gamer sur mesure</a></li>
+          <li><a href="/montage-pc">PC Gamer sur mesure</a></li>
           <li><a href="/services#conseils">Conseils &amp; accompagnement</a></li>
         </ul>
       </div>
@@ -165,6 +165,7 @@
 </footer>
 <a class="fab" href="tel:+33760095033" aria-label="Appeler M.T Répare">📞</a>
 <button class="to-top" aria-label="Revenir en haut">↑</button>
+<script src="/assets/config.js"></script>
 <script src="/assets/main.js" defer></script>
 </body>
 </html>
