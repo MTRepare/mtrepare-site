@@ -153,10 +153,15 @@
         var sel = document.createElement("select");
         sel.id = id; sel.name = "comp_" + norm(cat).toLowerCase(); sel.setAttribute("data-cat", cat);
         sel.appendChild(new Option("Je laisse M.T Répare choisir", ""));
+        var groups = {};
         items.forEach(function (r) {
           var o = new Option(r.modele + (r.info ? " — " + r.info : ""), r.modele);
           o.setAttribute("data-socket", r.socket || ""); o.setAttribute("data-mem", r.memoire || ""); o.setAttribute("data-format", r.format || "");
-          sel.appendChild(o);
+          o.setAttribute("data-label", o.text);
+          if (r.groupe) {
+            if (!groups[r.groupe]) { groups[r.groupe] = document.createElement("optgroup"); groups[r.groupe].label = r.groupe; sel.appendChild(groups[r.groupe]); }
+            groups[r.groupe].appendChild(o);
+          } else sel.appendChild(o);
         });
         if (cat === "Carte graphique") sel.appendChild(new Option("Aucune (graphique intégré au processeur)", "Aucune (iGPU)"));
         sel.addEventListener("change", checkCompat);
@@ -174,7 +179,29 @@
     var o = sel.options[sel.selectedIndex];
     return { name: sel.value, socket: o.getAttribute("data-socket"), mem: o.getAttribute("data-mem"), format: o.getAttribute("data-format") };
   }
+  /* grise les choix incompatibles avec ce qui est déjà sélectionné */
+  function markOptions(cat, test) {
+    var sel = form.querySelector('select[data-cat="' + cat + '"]');
+    if (!sel) return;
+    Array.prototype.forEach.call(sel.options, function (o) {
+      if (!o.value || !o.getAttribute("data-label")) return;
+      var ok = test(o);
+      o.disabled = !ok && o !== sel.options[sel.selectedIndex];
+      o.text = o.getAttribute("data-label") + (ok ? "" : " (non compatible)");
+    });
+  }
+  function filterOptions() {
+    var cpu = selected("Processeur"), mb = selected("Carte mère"), ram = selected("Mémoire"), box = selected("Boîtier");
+    markOptions("Carte mère", function (o) {
+      var s = o.getAttribute("data-socket"), m = o.getAttribute("data-mem"), f = o.getAttribute("data-format");
+      return (!cpu || !cpu.socket || !s || s === cpu.socket) && (!ram || !ram.mem || !m || m === ram.mem) &&
+        (!box || !box.format || !f || (FORMAT_RANK[norm(f)] || 0) <= (FORMAT_RANK[norm(box.format)] || 0));
+    });
+    markOptions("Processeur", function (o) { var s = o.getAttribute("data-socket"); return !mb || !mb.socket || !s || s === mb.socket; });
+    markOptions("Mémoire", function (o) { var m = o.getAttribute("data-mem"); return !mb || !mb.mem || !m || m === mb.mem; });
+  }
   function checkCompat() {
+    filterOptions();
     var cpu = selected("Processeur"), mb = selected("Carte mère"), ram = selected("Mémoire"), box = selected("Boîtier");
     var msgs = [];
     if (cpu && mb && cpu.socket && mb.socket) {
