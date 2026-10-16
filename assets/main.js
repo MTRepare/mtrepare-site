@@ -178,12 +178,56 @@
       });
     });
 
+    /* Code postal -> liste des communes (API officielle geo.api.gouv.fr) */
+    var cp = form.querySelector("#cp"), ville = form.querySelector("#ville"), list = form.querySelector("#city-list");
+    if (cp && ville && list) {
+      var lastCp = "";
+      function closeList() { list.hidden = true; list.innerHTML = ""; }
+      function pick(name) {
+        ville.value = name; closeList();
+        var f = ville.closest(".field"); if (f) f.classList.remove("invalid");
+        fillSummary();
+      }
+      function render(items, msg) {
+        list.innerHTML = "";
+        if (msg) { var li = document.createElement("li"); li.className = "msg"; li.textContent = msg; list.appendChild(li); }
+        items.forEach(function (n) {
+          var li = document.createElement("li");
+          li.setAttribute("role", "option"); li.tabIndex = 0; li.textContent = n;
+          li.addEventListener("mousedown", function (e) { e.preventDefault(); pick(n); });
+          li.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); pick(n); } });
+          list.appendChild(li);
+        });
+        list.hidden = false;
+      }
+      cp.addEventListener("input", function () {
+        cp.value = cp.value.replace(/\D/g, "").slice(0, 5);
+        if (cp.value.length < 5) { lastCp = ""; closeList(); return; }
+        if (cp.value === lastCp) return;
+        lastCp = cp.value;
+        render([], "Recherche des communes…");
+        fetch("https://geo.api.gouv.fr/communes?codePostal=" + cp.value + "&fields=nom&format=json")
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (cp.value !== lastCp) return;
+            var names = data.map(function (c) { return c.nom; }).sort(function (a, b) { return a.localeCompare(b, "fr"); });
+            if (!names.length) return render([], "Aucune commune trouvée pour ce code postal.");
+            if (names.length === 1) { pick(names[0]); return; }
+            render(names, "Choisissez votre ville :");
+            ville.focus();
+          })
+          .catch(function () { closeList(); });
+      });
+      ville.addEventListener("focus", function () { if (list.children.length) list.hidden = false; });
+      ville.addEventListener("blur", function () { setTimeout(function () { list.hidden = true; }, 150); });
+    }
+
     function fillSummary() {
       var s = form.querySelector(".summary");
       if (!s) return;
       var d = new FormData(form);
       s.innerHTML = "";
-      [["Appareil", d.get("appareil")], ["Modèle", d.get("modele") || "—"], ["Nom", d.get("name")], ["E-mail", d.get("email")], ["Téléphone", d.get("telephone")]].forEach(function (r) {
+      [["Appareil", d.get("appareil")], ["Modèle", d.get("modele") || "—"], ["Nom", d.get("name")], ["E-mail", d.get("email")], ["Téléphone", d.get("telephone")], ["Ville", ((d.get("code_postal") || "") + " " + (d.get("ville") || "")).trim()]].forEach(function (r) {
         var row = document.createElement("div");
         var a = document.createElement("span"); a.textContent = r[0];
         var b = document.createElement("span"); b.textContent = r[1] || "—";

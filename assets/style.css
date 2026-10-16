@@ -368,3 +368,11 @@ section{padding:96px 0}
 
 @media (max-width:900px){.reviews .review{flex-basis:calc((100% - 24px)/2)}}
 @media (max-width:640px){.reviews .review{flex-basis:100%}}
+
+/* Liste des villes (code postal) */
+.city-field{position:relative}
+.city-list{position:absolute;left:0;right:0;top:calc(100% - 4px);z-index:20;list-style:none;margin:0;padding:6px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-lg);max-height:240px;overflow:auto}
+.city-list li{padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--ink);font-weight:500}
+.city-list li:hover,.city-list li:focus{background:#EAF4FA;color:var(--blue);outline:0}
+.city-list li.msg{cursor:default;color:var(--muted);font-weight:400;font-size:.85rem;padding:6px 12px}
+.city-list li.msg:hover{background:none;color:var(--muted)}
