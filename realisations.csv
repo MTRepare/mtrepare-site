@@ -1,0 +1,9 @@
+photo;titre;description
+# ---------------------------------------------------------------------------
+# GALERIE "NOS RÉALISATIONS" (page Montage PC)
+# 1. Envoie ta photo dans le dossier img/realisations/ (ex. pc-blanc-rtx5070.jpg)
+# 2. Ajoute une ligne ici : nom-du-fichier.jpg;Titre;Petite description
+# Tant qu'il n'y a aucune ligne, la galerie reste masquée sur le site.
+# Exemple (enlève le # pour l'activer) :
+# pc-blanc-rtx5070.jpg;PC Gamer blanc;Ryzen 7 7800X3D, RTX 5070, 32 Go DDR5
+# ---------------------------------------------------------------------------

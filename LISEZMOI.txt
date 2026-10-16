@@ -1,0 +1,2 @@
+Dépose ici les photos des PC que tu as montés (format .jpg conseillé, 1200 px de large max).
+Puis ajoute une ligne par photo dans data/realisations.csv.

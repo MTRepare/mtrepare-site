@@ -1,26 +1,23 @@
-# Site M.T Répare — version statique pour Render
+# Site M.T Répare — mode d'emploi
 
-Mêmes adresses de pages que sur Webador (`/services`, `/tarifs`, `/devis`, `/a-propos`, `/f-a-q`), pour ne pas perdre le référencement.
+Site statique hébergé sur Render (Static Site), mis à jour automatiquement à chaque modification sur GitHub.
 
-## 1. Images
+## Clé Web3Forms (formulaires Devis + Montage PC)
+Fichier `assets/config.js` : remplace `VOTRE_CLE_WEB3FORMS` par ta clé.
+⚠️ Lors des futures mises à jour, ne réenvoie jamais ce fichier (sinon la clé est écrasée).
 
-Toutes les images sont incluses (logo, mascotte et les 3 illustrations des services) : rien à ajouter.
+## Mettre à jour la liste des composants (page Montage PC)
+Fichier `data/composants.csv` — sur GitHub : ouvre le fichier > crayon ✏️ > modifie > Commit changes.
+- Une ligne = un composant, colonnes séparées par des points-virgules `;`
+- `categorie;modele;socket;memoire;format;disponible;info`
+- Rupture chez le fournisseur : mets `non` dans la colonne `disponible` (le composant disparaît du site sans être supprimé).
+- Nouveau composant : copie une ligne de la même catégorie et change le nom.
+- `socket` (processeurs + cartes mères), `memoire` (DDR4/DDR5) et `format` (ATX/mATX/ITX) servent à la vérification de compatibilité : remplis-les pour ces catégories.
 
-## 2. Formulaire de devis (Web3Forms, gratuit)
+## Galerie « Nos réalisations »
+1. Envoie la photo dans `img/realisations/` (Add file > Upload files depuis ce dossier).
+2. Ajoute une ligne dans `data/realisations.csv` : `nom-photo.jpg;Titre;Description`
+La galerie apparaît automatiquement dès qu'il y a au moins une ligne.
 
-1. Va sur https://web3forms.com, saisis `mtrepare@outlook.fr` → tu reçois une clé d'accès par e-mail.
-2. Dans `devis/index.html`, remplace `VOTRE_CLE_WEB3FORMS` par cette clé.
-3. Les demandes arriveront directement dans ta boîte mail.
-
-## 3. Mise en ligne sur Render
-
-1. Crée un nouveau dépôt GitHub (ex. `mtrepare-site`) et envoie-y tout ce dossier.
-2. Render > New > **Static Site** > choisis le dépôt.
-   - Build Command : (vide)
-   - Publish Directory : `.`
-3. Teste sur l'adresse `xxx.onrender.com` (pages, formulaire, mobile).
-4. Settings > Custom Domains : ajoute `mtrepare.fr` et `www.mtrepare.fr`.
-5. Une fois le domaine transféré chez OVH : enregistrement A `@` → 216.24.57.1 et CNAME `www` → `xxx.onrender.com` (comme pour gestatphone.fr).
-6. Search Console : soumets `https://www.mtrepare.fr/sitemap.xml`.
-
-Le fichier `render.yaml` ajoute une redirection de l'ancienne adresse `/services/devis` vers `/devis`. Si tu crées le site à la main (sans Blueprint), ajoute cette règle dans Render > Redirects/Rewrites.
+## Avis Google
+Note, nombre d'avis et textes : à mettre à jour avec Claude (fichiers index.html et a-propos/index.html).

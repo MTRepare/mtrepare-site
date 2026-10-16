@@ -1,0 +1,73 @@
+categorie;modele;socket;memoire;format;disponible;info
+# ---------------------------------------------------------------------------
+# LISTE DES COMPOSANTS PROPOSÉS SUR LA PAGE "MONTAGE PC"
+# - Une ligne = un composant. Séparateur : point-virgule ;
+# - categorie : Processeur, Carte mère, Mémoire, Carte graphique, Stockage, Alimentation, Boîtier, Refroidissement
+# - socket : pour Processeur et Carte mère (ex. AM5, AM4, LGA1700, LGA1851) - sert à vérifier la compatibilité
+# - memoire : pour Carte mère et Mémoire (DDR4 ou DDR5)
+# - format : pour Carte mère (ATX, mATX, ITX) et Boîtier (format MAXIMUM accepté)
+# - disponible : oui = affiché / non = masqué (pratique quand le fournisseur est en rupture)
+# - info : petit texte affiché à côté du nom (facultatif)
+# Les lignes qui commencent par # sont ignorées.
+# ---------------------------------------------------------------------------
+Processeur;AMD Ryzen 5 5600;AM4;;;oui;6 cœurs - petit budget
+Processeur;AMD Ryzen 7 5700X3D;AM4;;;oui;8 cœurs - jeu
+Processeur;AMD Ryzen 5 7600;AM5;;;oui;6 cœurs
+Processeur;AMD Ryzen 5 9600X;AM5;;;oui;6 cœurs
+Processeur;AMD Ryzen 7 9700X;AM5;;;oui;8 cœurs
+Processeur;AMD Ryzen 7 7800X3D;AM5;;;oui;8 cœurs - jeu
+Processeur;AMD Ryzen 7 9800X3D;AM5;;;oui;8 cœurs - jeu haut de gamme
+Processeur;AMD Ryzen 9 9900X;AM5;;;oui;12 cœurs - création
+Processeur;AMD Ryzen 9 9950X3D;AM5;;;oui;16 cœurs - très haut de gamme
+Processeur;Intel Core i5-14400F;LGA1700;;;oui;10 cœurs
+Processeur;Intel Core i5-14600KF;LGA1700;;;oui;14 cœurs
+Processeur;Intel Core i7-14700KF;LGA1700;;;oui;20 cœurs
+Processeur;Intel Core Ultra 5 245K;LGA1851;;;oui;14 cœurs
+Processeur;Intel Core Ultra 7 265K;LGA1851;;;oui;20 cœurs
+Processeur;Intel Core Ultra 9 285K;LGA1851;;;oui;24 cœurs
+Carte mère;Carte mère B550 ATX;AM4;DDR4;ATX;oui;
+Carte mère;Carte mère B550M micro-ATX;AM4;DDR4;mATX;oui;
+Carte mère;Carte mère B650 ATX Wi-Fi;AM5;DDR5;ATX;oui;
+Carte mère;Carte mère B650M micro-ATX;AM5;DDR5;mATX;oui;
+Carte mère;Carte mère B850 ATX Wi-Fi;AM5;DDR5;ATX;oui;
+Carte mère;Carte mère B850-I mini-ITX Wi-Fi;AM5;DDR5;ITX;oui;
+Carte mère;Carte mère X870 ATX Wi-Fi;AM5;DDR5;ATX;oui;haut de gamme
+Carte mère;Carte mère B760 ATX DDR5 Wi-Fi;LGA1700;DDR5;ATX;oui;
+Carte mère;Carte mère B760M micro-ATX DDR4;LGA1700;DDR4;mATX;oui;
+Carte mère;Carte mère Z790 ATX DDR5;LGA1700;DDR5;ATX;oui;
+Carte mère;Carte mère B860 ATX Wi-Fi;LGA1851;DDR5;ATX;oui;
+Carte mère;Carte mère Z890 ATX Wi-Fi;LGA1851;DDR5;ATX;oui;haut de gamme
+Mémoire;DDR4 16 Go (2x8 Go) 3200 MHz;;DDR4;;oui;
+Mémoire;DDR4 32 Go (2x16 Go) 3600 MHz;;DDR4;;oui;
+Mémoire;DDR5 16 Go (2x8 Go) 6000 MHz;;DDR5;;oui;
+Mémoire;DDR5 32 Go (2x16 Go) 6000 MHz;;DDR5;;oui;le plus courant
+Mémoire;DDR5 64 Go (2x32 Go) 6000 MHz;;DDR5;;oui;création
+Carte graphique;Intel Arc B580 12 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5060 8 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5060 Ti 16 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5070 12 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5070 Ti 16 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5080 16 Go;;;;oui;
+Carte graphique;NVIDIA GeForce RTX 5090 32 Go;;;;oui;très haut de gamme
+Carte graphique;AMD Radeon RX 9060 XT 16 Go;;;;oui;
+Carte graphique;AMD Radeon RX 9070 16 Go;;;;oui;
+Carte graphique;AMD Radeon RX 9070 XT 16 Go;;;;oui;
+Stockage;SSD NVMe 500 Go;;;;oui;
+Stockage;SSD NVMe 1 To;;;;oui;
+Stockage;SSD NVMe 2 To;;;;oui;
+Stockage;SSD NVMe 4 To;;;;oui;
+Stockage;Disque dur 2 To (stockage);;;;oui;
+Alimentation;Alimentation 550 W 80+ Bronze;;;;oui;
+Alimentation;Alimentation 650 W 80+ Gold;;;;oui;
+Alimentation;Alimentation 750 W 80+ Gold;;;;oui;
+Alimentation;Alimentation 850 W 80+ Gold;;;;oui;
+Alimentation;Alimentation 1000 W 80+ Gold;;;;oui;
+Boîtier;Boîtier compact mini-ITX;;;ITX;oui;
+Boîtier;Boîtier moyen tour micro-ATX;;;mATX;oui;
+Boîtier;Boîtier moyen tour ATX noir vitré;;;ATX;oui;
+Boîtier;Boîtier moyen tour ATX blanc vitré;;;ATX;oui;
+Boîtier;Boîtier grande tour ATX;;;ATX;oui;
+Refroidissement;Ventirad standard;;;;oui;
+Refroidissement;Ventirad double tour;;;;oui;
+Refroidissement;Watercooling AIO 240 mm;;;;oui;
+Refroidissement;Watercooling AIO 360 mm;;;;oui;
