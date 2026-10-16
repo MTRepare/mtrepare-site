@@ -41,7 +41,15 @@
   </div>
 </section>
 
-<section>
+<section class="section-alt" id="configs-section" hidden>
+  <div class="container">
+    <div class="section-head reveal in"><span class="eyebrow">Configurations types</span><h2>Partez d'une configuration éprouvée</h2><p>Choisissez votre plateforme <strong>AMD</strong> ou <strong>Intel</strong>, puis personnalisez-la à votre goût dans le formulaire.</p></div>
+    <div class="cfg-grid" id="cfg-grid"></div>
+    <p class="note info cfg-note">* Prix indicatif d'un PC monté avec Windows 11 Famille. Le prix de chaque configuration peut varier en fonction du prix des composants utilisés et de la disponibilité chez nos fournisseurs. Un devis détaillé vous est toujours remis avant commande.</p>
+  </div>
+</section>
+
+<section id="configurateur">
   <div class="container mpc-wrap">
     <form id="mpc-form" class="form-card mpc-card" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -178,6 +186,7 @@
         <div class="mstep" data-step="expert" data-label="Composants" data-path="Expert">
           <h3>Choisissez vos composants</h3>
           <p class="sub">Prix sur devis selon les disponibilités. Laissez « Je laisse M.T Répare choisir » pour les éléments où vous n'avez pas de préférence.</p>
+          <input type="hidden" name="config_type" id="config_type"><div class="cfg-picked" id="cfg-picked" hidden></div>
           <div class="field"><label>Utilisation principale</label><input name="usage_expert" placeholder="Ex. : jeux en 1440p 165 Hz + montage vidéo"></div>
           <div id="comp-list" class="comp-list"><p class="sub">Chargement de la liste des composants…</p></div>
           <div id="compat" class="compat" aria-live="polite"></div>

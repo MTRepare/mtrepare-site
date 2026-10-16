@@ -271,7 +271,7 @@
       rows = rows.filter(function (r) { return r[1]; });
       if (rows.length) S.push({ title: title, rows: rows });
     }
-    add("Projet", [["Formule", path() === "Expert" ? "Je choisis mes composants" : "Conseil personnalisé"]]);
+    add("Projet", [["Formule", val("config_type") && path() === "Expert" ? "Configuration type" : (path() === "Expert" ? "Je choisis mes composants" : "Conseil personnalisé")], ["Configuration de départ", path() === "Expert" ? val("config_type") : ""]]);
     if (path() === "Expert") {
       add("Composants choisis", [["Utilisation", val("usage_expert")]].concat(CATS.map(function (c) {
         var s = selected(c); return [c, s ? s.name : (form.querySelector('select[data-cat="' + c + '"]') ? "Choix M.T Répare" : "")];
@@ -313,7 +313,7 @@
   }
   function subject() {
     var bits = ["[MONTAGE PC]"];
-    if (path() === "Expert") bits.push("Config client");
+    if (path() === "Expert") bits.push(val("config_type") ? "Config " + val("config_type").split(" (à partir")[0] : "Config client");
     else {
       var u = val("usage");
       if (u.indexOf("Jeux") > -1) bits.push("Jeux" + (val("resolution") ? " " + val("resolution").split(" ").pop() : "") + (val("frequence") ? "/" + val("frequence").split(" ")[0] + "Hz" : ""));
@@ -411,11 +411,94 @@
       .catch(function () { /* pas de galerie */ });
   }
 
+  /* ---------- configurations types (data/configurations.csv) ---------- */
+  var cfgSection = document.getElementById("configs-section");
+  var CFG_ROWS = [["Processeur", "processeur", "🧠"], ["Carte graphique", "carte_graphique", "🎮"], ["Mémoire", "memoire", "💾"], ["Stockage", "stockage", "🗄️"], ["Carte mère", "carte_mere", "🧩"], ["Alimentation", "alimentation", "🔌"], ["Boîtier", "boitier", "🖥️"], ["Refroidissement", "refroidissement", "❄️"]];
+  function applyConfig(c) {
+    compLoaded.then(function () {
+      restoring = true;
+      var exp = form.querySelector("#p-expert"); exp.checked = true;
+      CFG_ROWS.forEach(function (r) {
+        var sel = form.querySelector('select[data-cat="' + r[0] + '"]');
+        if (!sel) return;
+        var want = c[r[1]] || "", found = false;
+        Array.prototype.forEach.call(sel.options, function (o) { o.disabled = false; if (o.value === want) found = true; });
+        sel.value = found ? want : "";
+      });
+      form.querySelector('[name="config_type"]').value = c.titre + " — " + c.plateforme + " (à partir de " + euros(c.prix) + ")";
+      form.querySelector('[name="usage_expert"]').value = c.titre + " : " + c.usage;
+      form.querySelector('[name="precisions_expert"]').value = c.extras || "";
+      if (+c.prix) { range.value = Math.min(5000, Math.round(+c.prix / 50) * 50); unknown.checked = false; }
+      restoring = false;
+      drawBudget(); checkCompat();
+      var box = form.querySelector("#cfg-picked");
+      box.innerHTML = "";
+      var b = document.createElement("b"); b.textContent = c.icone + " " + c.titre + " — " + c.plateforme;
+      box.appendChild(b);
+      box.appendChild(document.createTextNode(" : configuration pré-remplie. Modifiez librement les composants ci-dessous, puis continuez."));
+      box.hidden = false;
+      drawStepper();
+      show(steps.indexOf(form.querySelector('[data-step="expert"]')), true);
+      document.getElementById("configurateur").scrollIntoView({ behavior: "smooth" });
+      save();
+    });
+  }
+  if (cfgSection) {
+    fetch("/data/configurations.csv", { cache: "no-cache" })
+      .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+      .then(function (txt) {
+        var rows = parseCSV(txt).filter(function (r) { return r.id && (r.disponible || "oui").toLowerCase() !== "non"; });
+        if (!rows.length) return;
+        var byId = {}, order = [];
+        rows.forEach(function (r) { if (!byId[r.id]) { byId[r.id] = []; order.push(r.id); } byId[r.id].push(r); });
+        order.sort(function (a, b) { return (+byId[a][0].ordre || 0) - (+byId[b][0].ordre || 0); });
+        var grid = document.getElementById("cfg-grid");
+        order.forEach(function (id) {
+          var variants = byId[id], cur = variants[0];
+          var card = document.createElement("article"); card.className = "cfg";
+          card.innerHTML = '<div class="cfg-top"><span class="e"></span><h3></h3></div><p class="use"></p><div class="plat" role="group" aria-label="Plateforme"></div><ul></ul><p class="extra"></p><div class="cfg-price"><small>À partir de</small><b></b><sup>*</sup></div><button type="button" class="btn btn-accent">Partir de cette config →</button>';
+          card.querySelector(".e").textContent = cur.icone || "🖥️";
+          card.querySelector("h3").textContent = cur.titre;
+          card.querySelector(".use").textContent = cur.usage;
+          var plat = card.querySelector(".plat");
+          function draw() {
+            var ul = card.querySelector("ul"); ul.innerHTML = "";
+            CFG_ROWS.slice(0, 5).forEach(function (r) {
+              if (!cur[r[1]]) return;
+              var li = document.createElement("li"), i = document.createElement("b"), s = document.createElement("span");
+              i.textContent = r[2]; s.textContent = cur[r[1]] === "Aucune (iGPU)" ? "Graphique intégré au processeur" : cur[r[1]].replace(/^Carte mère /, "");
+              li.appendChild(i); li.appendChild(s); ul.appendChild(li);
+            });
+            var ex = card.querySelector(".extra"); ex.textContent = cur.extras || ""; ex.hidden = !cur.extras;
+            card.querySelector(".cfg-price b").textContent = euros(cur.prix);
+            plat.querySelectorAll("button").forEach(function (b) { var on = b.getAttribute("data-p") === cur.plateforme; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+          }
+          variants.forEach(function (v) {
+            var b = document.createElement("button"); b.type = "button"; b.textContent = v.plateforme; b.setAttribute("data-p", v.plateforme);
+            b.addEventListener("click", function () { cur = v; draw(); });
+            plat.appendChild(b);
+          });
+          card.querySelector(".btn").addEventListener("click", function () { applyConfig(cur); });
+          draw();
+          grid.appendChild(card);
+        });
+        cfgSection.hidden = false;
+      })
+      .catch(function () { /* pas de configurations */ });
+  }
+  form.querySelectorAll('input[name="parcours"]').forEach(function (r) {
+    r.addEventListener("change", function () {
+      if (r.value === "Conseil") { form.querySelector('[name="config_type"]').value = ""; form.querySelector("#cfg-picked").hidden = true; }
+    });
+  });
+
   /* ---------- démarrage ---------- */
   var draft = restore();
   drawBudget();
   compLoaded.then(function () {
     if (draft) { restoring = true; restore(); restoring = false; }
+    var ct = form.querySelector('[name="config_type"]');
+    if (ct && ct.value && path() === "Expert") { var bx = form.querySelector("#cfg-picked"); bx.textContent = "Configuration de départ : " + ct.value + ". Modifiez librement les composants ci-dessous."; bx.hidden = false; }
     checkCompat();
   });
   var startStep = draft && typeof draft.step === "number" && steps[draft.step] && activeSteps().indexOf(steps[draft.step]) > -1 ? draft.step : 0;

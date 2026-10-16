@@ -1,0 +1,22 @@
+id;ordre;icone;titre;usage;plateforme;prix;processeur;carte_mere;memoire;carte_graphique;stockage;alimentation;boitier;refroidissement;extras;disponible
+# ---------------------------------------------------------------------------
+# CONFIGURATIONS TYPES (page Montage PC)
+# - Une ligne = une configuration pour UNE plateforme (AMD ou Intel).
+#   Les lignes qui ont le même "id" forment une seule carte avec le bouton AMD / Intel.
+# - prix : prix "à partir de" en euros, PC monté avec Windows 11 Famille (nombre seul, ex. 1150)
+# - Les noms des composants doivent être écrits EXACTEMENT comme dans composants.csv
+#   (colonne modele) pour être pré-sélectionnés. "Aucune (iGPU)" = pas de carte graphique.
+# - extras : texte en plus (ex. second disque), facultatif
+# - disponible : oui = affiché / non = masqué
+# Les lignes qui commencent par # sont ignorées.
+# ---------------------------------------------------------------------------
+petit-budget;2;💸;Petit budget gamer;Jouer en Full HD à petit prix : Fortnite, LoL, Valorant, Minecraft.;AMD;950;AMD Ryzen 5 5600;Carte mère B550M micro-ATX;DDR4 16 Go (2x8 Go) 3200 MHz;NVIDIA GeForce RTX 5060 8 Go;SSD NVMe 1 To;Alimentation 550 W 80+ Bronze;Boîtier moyen tour micro-ATX;Ventirad standard;;oui
+petit-budget;2;💸;Petit budget gamer;Jouer en Full HD à petit prix : Fortnite, LoL, Valorant, Minecraft.;Intel;1000;Intel Core i5-13400F;Carte mère B760M micro-ATX DDR4;DDR4 16 Go (2x8 Go) 3200 MHz;NVIDIA GeForce RTX 5060 8 Go;SSD NVMe 1 To;Alimentation 550 W 80+ Bronze;Boîtier moyen tour micro-ATX;Ventirad standard;;oui
+bureautique;1;🌐;Bureautique & Télétravail;Internet, mails, Office, visio, études : silencieux et compact.;AMD;800;AMD Ryzen 5 8600G;Carte mère B650M micro-ATX;DDR5 16 Go (2x8 Go) 5600 MHz;Aucune (iGPU);SSD NVMe 1 To;Alimentation 550 W 80+ Bronze;Boîtier moyen tour micro-ATX;Ventirad standard;;oui
+bureautique;1;🌐;Bureautique & Télétravail;Internet, mails, Office, visio, études : silencieux et compact.;Intel;850;Intel Core Ultra 5 225;Carte mère B860M micro-ATX;DDR5 16 Go (2x8 Go) 5600 MHz;Aucune (iGPU);SSD NVMe 1 To;Alimentation 550 W 80+ Bronze;Boîtier moyen tour micro-ATX;Ventirad standard;;oui
+gamer-1080p;3;🎮;Gamer 1080p;Les jeux compétitifs et récents en Full HD, écran 144 Hz et plus.;AMD;1150;AMD Ryzen 5 7600;Carte mère B650M micro-ATX;DDR5 16 Go (2x8 Go) 6000 MHz;AMD Radeon RX 9060 XT 8 Go;SSD NVMe 1 To;Alimentation 650 W 80+ Gold;Boîtier moyen tour ATX noir vitré;Ventirad standard;;oui
+gamer-1080p;3;🎮;Gamer 1080p;Les jeux compétitifs et récents en Full HD, écran 144 Hz et plus.;Intel;1150;Intel Core i5-14400F;Carte mère B760M micro-ATX DDR5;DDR5 16 Go (2x8 Go) 6000 MHz;NVIDIA GeForce RTX 5060 8 Go;SSD NVMe 1 To;Alimentation 650 W 80+ Gold;Boîtier moyen tour ATX noir vitré;Ventirad standard;;oui
+gamer-1440p;4;🔥;Gamer 1440p;Les jeux récents en QHD et en ultra, haute fréquence.;AMD;2150;AMD Ryzen 7 7800X3D;Carte mère B850 ATX Wi-Fi;DDR5 32 Go (2x16 Go) 6000 MHz CL30;AMD Radeon RX 9070 XT 16 Go;SSD NVMe 2 To;Alimentation 850 W 80+ Gold;Boîtier moyen tour ATX noir vitré;Watercooling AIO 240 mm;;oui
+gamer-1440p;4;🔥;Gamer 1440p;Les jeux récents en QHD et en ultra, haute fréquence.;Intel;2250;Intel Core Ultra 7 265KF;Carte mère Z890 ATX Wi-Fi;DDR5 32 Go (2x16 Go) 6000 MHz CL30;NVIDIA GeForce RTX 5070 Ti 16 Go;SSD NVMe 2 To;Alimentation 850 W 80+ Gold;Boîtier moyen tour ATX noir vitré;Watercooling AIO 240 mm;;oui
+creation;5;🎬;Création & Streaming;Montage vidéo 4K, 3D, streaming en jouant.;AMD;2650;AMD Ryzen 9 9900X;Carte mère X870 ATX Wi-Fi;DDR5 64 Go (2x32 Go) 6000 MHz;NVIDIA GeForce RTX 5070 Ti 16 Go;SSD NVMe 2 To;Alimentation 850 W 80+ Gold;Boîtier grande tour ATX;Watercooling AIO 360 mm;+ Disque dur HDD 4 To pour les rushs;oui
+creation;5;🎬;Création & Streaming;Montage vidéo 4K, 3D, streaming en jouant.;Intel;2850;Intel Core Ultra 9 285K;Carte mère Z890 ATX Wi-Fi;DDR5 64 Go (2x32 Go) 6000 MHz;NVIDIA GeForce RTX 5070 Ti 16 Go;SSD NVMe 2 To;Alimentation 850 W 80+ Gold;Boîtier grande tour ATX;Watercooling AIO 360 mm;+ Disque dur HDD 4 To pour les rushs;oui

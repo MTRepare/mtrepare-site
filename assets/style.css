@@ -470,3 +470,33 @@ section{padding:96px 0}
   .header,.fab,.to-top{display:none!important}
 }
 .btn[hidden],[hidden]{display:none!important}
+
+/* Configurations types */
+.cfg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.cfg{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+.cfg::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--blue),var(--orange))}
+.cfg:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.cfg-top{display:flex;gap:12px;align-items:center}
+.cfg-top .e{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.6rem;background:linear-gradient(135deg,#E3F2FA,#FFF1DE);flex:none}
+.cfg h3{font-size:1.2rem}
+.cfg .use{color:var(--muted);font-size:.92rem}
+.plat{display:inline-flex;background:var(--bg);border-radius:999px;padding:4px;gap:4px;align-self:flex-start}
+.plat button{border:0;background:none;padding:7px 18px;border-radius:999px;font:600 .9rem "Inter",sans-serif;color:var(--muted);cursor:pointer;transition:.2s}
+.plat button.on[data-p="AMD"]{background:#E8483C;color:#fff}
+.plat button.on[data-p="Intel"]{background:#0071C5;color:#fff}
+.cfg ul{list-style:none;display:grid;gap:7px;font-size:.9rem}
+.cfg li{display:flex;gap:10px;align-items:flex-start}
+.cfg li b{flex:none;width:26px;text-align:center}
+.cfg li span{color:var(--ink)}
+.cfg .extra{font-size:.85rem;color:var(--blue);font-weight:600}
+.cfg-price{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.cfg-price small{color:var(--muted)}
+.cfg-price b{font-family:"Outfit";font-size:1.7rem;color:var(--ink)}
+.cfg-price sup{color:var(--muted);font-size:.8rem}
+.cfg .btn{justify-content:center}
+.cfg-note{max-width:none;margin-top:26px}
+.cfg-picked{background:#FFF7EC;border:1px solid #FBD9AE;color:#7A4A0B;border-radius:14px;padding:12px 16px;margin-bottom:16px;font-size:.92rem}
+.cfg-picked b{color:var(--ink)}
+.cfg-grid{display:flex;flex-wrap:wrap;justify-content:center}
+.cfg-grid .cfg{flex:0 1 calc((100% - 44px)/3);min-width:280px}
+@media (max-width:640px){.cfg-grid .cfg{flex-basis:100%;min-width:0}}
