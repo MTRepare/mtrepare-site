@@ -504,3 +504,13 @@ section{padding:96px 0}
 .mediateur{background:#EAF4FA;border:1px solid #C7E3F2;border-radius:14px;padding:16px 20px;margin:12px 0}
 .mediateur p{margin:0}
 .mediateur,#cgv{scroll-margin-top:110px}
+
+/* Suivi de réparation */
+.suivi-wrap{display:grid;grid-template-columns:minmax(0,520px) 1fr;gap:32px;align-items:start;justify-content:center}
+.suivi-frame{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px;position:relative}
+.suivi-frame iframe{display:block;width:100%;height:640px;border:0;border-radius:14px;background:#fff}
+.suivi-loading{position:absolute;inset:16px 16px auto 16px;height:200px;display:flex;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-weight:500;pointer-events:none}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--blue);animation:spin 1s linear infinite}
+.suivi-alt{text-align:center;font-size:.85rem;color:var(--muted);margin-top:10px}
+.nav a{padding:8px 12px}
+@media (max-width:900px){.suivi-wrap{grid-template-columns:1fr}.suivi-frame{max-width:520px;margin:0 auto;width:100%}}
